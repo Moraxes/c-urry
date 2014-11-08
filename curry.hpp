@@ -1,5 +1,5 @@
-#include <memory>
-#include <functional>
+#include <memory>  // std::shared_ptr
+#include <functional>  // std::function
 
 
 template <typename RetT, typename ArgT1, typename... ArgTs>
@@ -38,3 +38,15 @@ public:
         return fptr(x);
     }
 };
+
+template <typename RetT, typename... ArgTs>
+auto curry(RetT (*f)(ArgTs...))
+{
+    return Curried<RetT, ArgTs...>(f);
+}
+
+template <typename RetT, typename... ArgTs>
+auto curry(std::function<RetT(ArgTs...)> f)
+{
+    return Curried<RetT, ArgTs...>(f);
+}

@@ -1,12 +1,16 @@
 This is a tiny header file that allows you to use all objects that would otherwise be usable with `std::function` in a curried manner, like in functional languages.
 
+
 Dependencies
 ============
 
-A sane compiler (one with C++14 support).
+A sane compiler (with C++14 support).
+
 
 Example
 =======
+
+    // To build: g++ -std=c++14 example.cpp -o example
 
     #include <iostream>
     #include "curry.hpp"
@@ -15,9 +19,10 @@ Example
         return x + y - z;
     }
 
-    int step_one() {
+    // auto return type to save lots of typing
+    auto step_one() {
         // first template parameter is the return type, the others are arguments' types
-        return Curried<int, int, int, int>(add_then_sub)(5);
+        return curry(add_then_sub)(5);
     }
 
     int main(int argc, char* argv[]) {
@@ -30,8 +35,15 @@ Output:
     
     6
 
+
 But why?
 ========
+
+I was bored.
+
+
+But we already have `std::bind`!
+================================
 
 I was bored.
 
