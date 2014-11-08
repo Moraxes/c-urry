@@ -20,6 +20,7 @@ Example
     }
 
     // auto return type to save lots of typing
+    // this is also an example of eta reduction
     auto step_one() {
         // first template parameter is the return type, the others are arguments' types
         return curry(add_then_sub)(5);
