@@ -5,9 +5,9 @@
 template <typename RetT, typename ArgT1, typename... ArgTs>
 class Curried
 {
+public:
     std::function<RetT(ArgT1, ArgTs...)> fptr;
 
-public:
     Curried(decltype(fptr) fptr) :
         fptr(fptr)
     {}
@@ -49,4 +49,10 @@ template <typename RetT, typename... ArgTs>
 auto curry(std::function<RetT(ArgTs...)> f)
 {
     return Curried<RetT, ArgTs...>(f);
+}
+
+template <typename RetT, typename... ArgTs>
+auto uncurry(Curried<RetT, ArgTs...> cf)
+{
+    return cf.fptr;
 }
