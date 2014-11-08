@@ -27,7 +27,7 @@ Example
     }
 
     int main(int argc, char* argv[]) {
-        std::cout << step_one()(4)(3) << "\n";
+        std::cout << uncurry(step_one())(4, 3) << "\n";
 
         return 0;
     }
