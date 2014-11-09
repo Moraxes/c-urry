@@ -4,7 +4,7 @@ This is a tiny header file that allows you to use all objects that would otherwi
 Dependencies
 ============
 
-A sane compiler (with C++14 support).
+A sane compiler (with C++14 support). Tested on MinGW-w64 with g++ 4.9.1. Should work fine with clang, probably doesn't with MSVC.
 
 
 Example
