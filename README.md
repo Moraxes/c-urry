@@ -52,4 +52,4 @@ I was bored.
 License
 =======
 
-If you for some reason think using this in actual, real-world code is a good idea, then you can do so under the terms of the Simplified BSD license, as provided in the `LICENSE` file.
+This is meant mostly for educational/"because-I-can" purposes, rather than being usable. The code is so short it's not unrealistic to write something similar by accident. However, if you for some reason think using this in actual, real-world code is a good idea, then you can do so under the terms of the Simplified BSD license, as provided in the `LICENSE` file.
