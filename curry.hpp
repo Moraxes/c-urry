@@ -6,15 +6,15 @@ template <typename RetT, typename ArgT1, typename... ArgTs>
 class Curried
 {
 public:
-    std::function<RetT(ArgT1, ArgTs...)> fptr;
+    std::function<RetT(ArgT1, ArgTs...)> func_obj;
 
-    Curried(decltype(fptr) fptr) :
-        fptr(fptr)
+    Curried(decltype(func_obj) func_obj) :
+        func_obj(func_obj)
     {}
 
     auto operator () (ArgT1 x)
     { 
-        std::shared_ptr<decltype(fptr)> fsptr(new decltype(fptr)(fptr));
+        std::shared_ptr<decltype(func_obj)> fsptr(new decltype(func_obj)(func_obj));
 
         return Curried<RetT, ArgTs...>(
             [fsptr, x] (ArgTs... args) {
@@ -26,33 +26,33 @@ public:
 template <typename RetT, typename ArgT1>
 class Curried <RetT, ArgT1>
 {
-    std::function<RetT(ArgT1)> fptr;
+    std::function<RetT(ArgT1)> func_obj;
 
 public:
-    Curried(decltype(fptr) fptr) :
-        fptr(fptr)
+    Curried(decltype(func_obj) func_obj) :
+        func_obj(func_obj)
     {}
 
     RetT operator () (ArgT1 x)
     {
-        return fptr(x);
+        return func_obj(x);
     }
 };
 
 template <typename RetT, typename... ArgTs>
-auto curry(RetT (*f)(ArgTs...))
+auto curry(RetT (*func)(ArgTs...))
 {
-    return Curried<RetT, ArgTs...>(f);
+    return Curried<RetT, ArgTs...>(func);
 }
 
 template <typename RetT, typename... ArgTs>
-auto curry(std::function<RetT(ArgTs...)> f)
+auto curry(std::function<RetT(ArgTs...)> func)
 {
-    return Curried<RetT, ArgTs...>(f);
+    return Curried<RetT, ArgTs...>(func);
 }
 
 template <typename RetT, typename... ArgTs>
-auto uncurry(Curried<RetT, ArgTs...> cf)
+auto uncurry(Curried<RetT, ArgTs...> cfunc)
 {
-    return cf.fptr;
+    return cfunc.func_obj;
 }
